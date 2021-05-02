@@ -14,6 +14,8 @@ export default {
 h1 {
   font-family: 'Work Sans', sans-serif;
   font-size: 1em;
-  margin: 1em;
+}
+div {
+  padding: 1em;
 }
 </style>

@@ -1,7 +1,7 @@
 import App from './App.vue';
+import router from './router';
 import { createApp } from 'vue';
 import { createStore } from 'vuex';
-import router from './router';
 
 interface RootState {
   drawerOpen: boolean;

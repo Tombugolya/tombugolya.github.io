@@ -22,5 +22,15 @@ body {
   font-size: 22px;
   background-color: whitesmoke;
   margin: 0;
+  padding: 0;
+}
+a {
+  font-family: 'Work Sans', sans-serif;
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: orange;
+  transition: all 200ms linear 0s;
 }
 </style>

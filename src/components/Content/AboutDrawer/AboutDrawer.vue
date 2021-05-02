@@ -1,15 +1,18 @@
 <template>
-  <div v-if="open">
-    <Title title="About me" close-button :on-click-callback="closeDrawer" />
-    <AboutText />
-    <Icons />
-  </div>
+  <transition name="fade" mode="out-in">
+    <div id="drawer" v-if="open">
+      <Title title="About me" close-button :on-click-callback="closeDrawer" />
+      <AboutText />
+      <Icons />
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
 import Title from '@/components/Common/Title';
 import AboutText from '@/components/Content/AboutDrawer/AboutText';
 import Icons from '@/components/Content/AboutDrawer/Icons';
+
 export default {
   name: 'AboutDrawer',
   components: { Icons, AboutText, Title },
@@ -24,4 +27,20 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#drawer {
+  background-color: whitesmoke;
+  position: absolute;
+  top: 10vh;
+  right: 0;
+  width: calc(100% / 3);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

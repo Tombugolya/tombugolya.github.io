@@ -1,17 +1,17 @@
 <template>
   <header>
-    <Title />
+    <MainTitle />
     <Navigation />
   </header>
 </template>
 
 <script>
-import Title from '@/components/MainTitle';
-import Navigation from '@/components/Navigation';
+import MainTitle from '@/components/header/MainTitle';
+import Navigation from '@/components/header/Navigation';
 
 export default {
   name: 'Header',
-  components: { Navigation, Title },
+  components: { Navigation, MainTitle },
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="portfolio">
+  <div id="portfolio" :style="styleGrid">
     <div :key="tile.id" v-for="tile in tiles">
       <Tile :tile="tile" />
     </div>
@@ -9,6 +9,7 @@
 <script lang="ts">
 import Tile from '@/components/Common/Tile.vue';
 import { defineComponent } from 'vue';
+import isMobile from 'is-mobile';
 
 const basePath = 'https://tombugolya.github.io';
 
@@ -66,13 +67,19 @@ export default defineComponent({
       ],
     };
   },
+  computed: {
+    styleGrid(): string {
+      return `grid-template-columns: repeat(${
+        isMobile() ? 2 : 3
+      }, minmax(100px, 1fr));`;
+    },
+  },
 });
 </script>
 
 <style scoped>
 #portfolio {
   display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 1fr));
 }
 div {
   height: 100%;

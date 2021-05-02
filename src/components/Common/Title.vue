@@ -44,4 +44,9 @@ div {
 h2 {
   font-family: 'Brush Script MT', sans-serif;
 }
+
+.fa-times:hover {
+  color: red;
+  transition: all 200ms linear 0s;
+}
 </style>

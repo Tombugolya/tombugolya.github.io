@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span><a @click="hideParent">about</a></span>
-    <span><a>my projects</a></span>
+    <p><a href="#" @click="openDrawer">about</a></p>
+    <p><a href="#">my projects</a></p>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: 'Navigation',
   methods: {
-    hideParent(): void {
+    openDrawer(): void {
       this.$store.commit('setDrawerOpen', true);
     },
   },
@@ -17,15 +17,14 @@ export default {
 </script>
 
 <style scoped>
-a {
-  font-family: 'Work Sans', sans-serif;
-}
-span {
+p {
   font-size: 0.8em;
-  margin: 0 10%;
 }
 div {
-  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 1em;
+  width: 15%;
   text-align: right;
 }
 </style>
