@@ -9,11 +9,12 @@
 </template>
 
 <script lang="ts">
-import Title from '@/components/Common/Title';
-import AboutText from '@/components/Content/AboutDrawer/AboutText';
-import Icons from '@/components/Content/AboutDrawer/Icons';
+import Title from '@/components/Common/Title.vue';
+import AboutText from '@/components/Content/AboutDrawer/AboutText.vue';
+import Icons from '@/components/Content/AboutDrawer/Icons.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'AboutDrawer',
   components: { Icons, AboutText, Title },
   props: {
@@ -24,7 +25,7 @@ export default {
       this.$store.commit('setDrawerOpen', false);
     },
   },
-};
+});
 </script>
 
 <style scoped>

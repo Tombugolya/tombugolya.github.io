@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Title',
   props: {
     title: {
@@ -23,14 +25,14 @@ export default {
   },
   methods: {
     defaultOnClickCallback(): void {
-      this.$parent.$el.style.display = 'none';
+      if (this.$parent) this.$parent.$el.style.display = 'none';
     },
     invokeOnClickCallback(): void {
       if (this.onClickCallback) this.onClickCallback();
       else this.defaultOnClickCallback();
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -6,14 +6,15 @@
 <script>
 import Header from '@/components/header/Header';
 import Content from '@/components/Content/Content';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     Content,
     Header,
   },
-};
+});
 </script>
 
 <style>

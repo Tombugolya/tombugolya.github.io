@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import AboutDrawer from '@/components/Content/AboutDrawer/AboutDrawer';
-import Portfolio from '@/components/Content/Portfolio/Portfolio';
+import AboutDrawer from '@/components/Content/AboutDrawer/AboutDrawer.vue';
+import Portfolio from '@/components/Content/Portfolio/Portfolio.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

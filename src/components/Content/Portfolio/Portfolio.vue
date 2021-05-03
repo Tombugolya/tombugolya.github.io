@@ -30,21 +30,21 @@ export default defineComponent({
       tiles: [
         {
           id: 1,
+          name: 'Random Shape',
+          url: `${basePath}/random-shape/`,
+          image: require('@/assets/object.png'),
+        },
+        {
+          id: 2,
           name: 'Colmar',
           url: `${basePath}/colmar/`,
           image: require('@/assets/colmar.jpg'),
         },
         {
-          id: 2,
-          name: 'News',
-          url: `${basePath}/news/`,
-          image: require('@/assets/news.png'),
-        },
-        {
           id: 3,
-          name: 'Random Shape',
-          url: `${basePath}/random-shape/`,
-          image: require('@/assets/object.png'),
+          name: 'Monochromize',
+          url: `${basePath}/monochromize/`,
+          image: require('@/assets/monochromize.png'),
         },
         {
           id: 4,
@@ -60,9 +60,9 @@ export default defineComponent({
         },
         {
           id: 6,
-          name: 'Monochromize',
-          url: `${basePath}/monochromize/`,
-          image: require('@/assets/monochromize.png'),
+          name: 'News',
+          url: `${basePath}/news/`,
+          image: require('@/assets/news.png'),
         },
       ],
     };

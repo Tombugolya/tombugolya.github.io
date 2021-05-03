@@ -6,14 +6,15 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+export default defineComponent({
   name: 'Navigation',
   methods: {
     openDrawer(): void {
       this.$store.commit('setDrawerOpen', true);
     },
   },
-};
+});
 </script>
 
 <style scoped>
