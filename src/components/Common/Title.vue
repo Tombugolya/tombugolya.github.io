@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <a v-if="closeButton" href="#" @click="invokeOnClickCallback">
-      <i class="fas fa-times fa-2x"></i>
+      <i class="fas fa-times fa-1x"></i>
     </a>
   </div>
 </template>
@@ -45,6 +45,7 @@ div {
 }
 h2 {
   font-family: 'Brush Script MT', sans-serif;
+  font-size: 2em;
 }
 
 .fa-times:hover {

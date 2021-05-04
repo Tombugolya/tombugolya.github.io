@@ -19,10 +19,12 @@ export default defineComponent({
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:wght@300&family=Work+Sans:wght@300&display=swap');
+* {
+  margin: 0;
+}
 body {
   font-size: 22px;
   background-color: whitesmoke;
-  margin: 0;
   padding: 0;
 }
 a {

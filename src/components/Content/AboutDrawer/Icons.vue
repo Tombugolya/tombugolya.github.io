@@ -1,17 +1,19 @@
 <template>
   <div>
     <a href="https://linkedin.com/in/tombugolya" target="_blank">
-      <i class="fab fa-linkedin fa-2x"></i>
+      <i class="fab fa-linkedin fa-lg"></i>
     </a>
     <a href="https://last.fm/user/carandboat" target="_blank">
-      <i class="fab fa-lastfm fa-2x"></i>
+      <i class="fab fa-lastfm-square fa-lg"></i>
+    </a>
+    <a href="https://open.spotify.com/user/tombugolya" target="_blank">
+      <i class="fab fa-spotify fa-lg"></i>
     </a>
     <a href="https://github.com/tombugolya" target="_blank">
-      <i class="fab fa-github fa-2x"></i>
+      <i class="fab fa-github fa-lg"></i>
     </a>
-    <a class="gmail tooltip" @click="copyEmail">
-      <i class="far fa-envelope fa-2x"></i>
-      <span class="tooltip-text" ref="tooltip">copy to clipboard</span>
+    <a class="gmail tooltip" @click="copyEmail($event)">
+      <i class="fas fa-envelope-square fa-lg"></i>
     </a>
   </div>
 </template>
@@ -23,10 +25,18 @@ import useClipboard from 'vue-clipboard3';
 export default defineComponent({
   name: 'Icons',
   methods: {
-    async copyEmail(): Promise<void> {
+    async copyEmail(event: Event): Promise<void> {
       try {
         await useClipboard().toClipboard('tombugolya@gmail.com');
-        (this.$refs.tooltip as HTMLSpanElement).innerHTML = 'copied!';
+        if (event.target) {
+          const element = event.target as HTMLAnchorElement;
+          const originalColor = element.style.color;
+          element.style.transition = 'all 300ms linear 0s';
+          element.style.color = 'green';
+          setTimeout(function () {
+            element.style.color = originalColor;
+          }, 1000);
+        }
       } catch (e) {
         console.error(e);
       }
@@ -35,4 +45,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+i {
+  margin: 0.1em;
+}
+</style>

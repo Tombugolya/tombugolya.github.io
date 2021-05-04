@@ -1,9 +1,11 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div id="drawer" v-if="open">
-      <Title title="About me" close-button :on-click-callback="closeDrawer" />
-      <AboutText />
-      <Icons />
+    <div :style="mobileCSS" id="drawer" v-if="open">
+      <div id="drawer-content">
+        <Title title="About me" close-button :on-click-callback="closeDrawer" />
+        <AboutText />
+        <Icons />
+      </div>
     </div>
   </transition>
 </template>
@@ -13,6 +15,7 @@ import Title from '@/components/Common/Title.vue';
 import AboutText from '@/components/Content/AboutDrawer/AboutText.vue';
 import Icons from '@/components/Content/AboutDrawer/Icons.vue';
 import { defineComponent } from 'vue';
+import isMobile from 'is-mobile';
 
 export default defineComponent({
   name: 'AboutDrawer',
@@ -25,6 +28,13 @@ export default defineComponent({
       this.$store.commit('setDrawerOpen', false);
     },
   },
+  computed: {
+    mobileCSS(): Record<string, string> {
+      return isMobile()
+        ? { width: '100%', top: '15vh', height: '85vh' }
+        : { width: 'calc(100% / 3)', top: '10vh', height: '90vh' };
+    },
+  },
 });
 </script>
 
@@ -32,9 +42,14 @@ export default defineComponent({
 #drawer {
   background-color: whitesmoke;
   position: absolute;
-  top: 10vh;
   right: 0;
-  width: calc(100% / 3);
+}
+#drawer-content {
+  display: flex;
+  height: 80%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 .fade-enter-active,
 .fade-leave-active {

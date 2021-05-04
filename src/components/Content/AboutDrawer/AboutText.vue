@@ -27,5 +27,11 @@ export default defineComponent({
 p {
   font-family: Lato, serif;
   font-size: 1em;
+  text-align: justify;
+  margin: 0.5em 0;
+}
+div {
+  margin: 0 auto;
+  width: 75%;
 }
 </style>

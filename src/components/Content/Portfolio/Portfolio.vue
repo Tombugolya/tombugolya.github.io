@@ -1,15 +1,15 @@
 <template>
   <div id="portfolio" :style="styleGrid">
-    <div :key="tile.id" v-for="tile in tiles">
-      <Tile :tile="tile" />
+    <div :key="tile.id" v-for="tile in tiles" ref="tiles">
+      <Tile :tile="tile" :highlight="getHighlight" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Tile from '@/components/Common/Tile.vue';
-import { defineComponent } from 'vue';
 import isMobile from 'is-mobile';
+import { defineComponent } from 'vue';
 
 const basePath = 'https://tombugolya.github.io';
 
@@ -70,8 +70,11 @@ export default defineComponent({
   computed: {
     styleGrid(): string {
       return `grid-template-columns: repeat(${
-        isMobile() ? 2 : 3
+        isMobile() ? 1 : 3
       }, minmax(100px, 1fr));`;
+    },
+    getHighlight(): boolean {
+      return this.$store.state.highlight;
     },
   },
 });
