@@ -1,23 +1,19 @@
 import { createStore } from 'vuex';
 export const Store = createStore({
-    state() {
-        return {
-            drawerOpen: false,
-            highlight: false,
-            onHighlight: Function,
-        };
+  state() {
+    return {
+      drawerOpen: false,
+      highlight: false,
+    };
+  },
+  mutations: {
+    setDrawerOpen(state, val) {
+      state.drawerOpen = val;
     },
-    mutations: {
-        setDrawerOpen(state, val) {
-            state.drawerOpen = val;
-        },
-        setHighlight(state, val) {
-            state.highlight = val;
-        },
-        setOnHighlight(state, val) {
-            state.onHighlight = val;
-        },
+    setHighlight(state, val) {
+      state.highlight = val;
     },
+  },
 });
 export default Store;
 //# sourceMappingURL=Store.js.map
