@@ -1,6 +1,6 @@
 <template>
   <div :style="style">
-    <a :href="tile.url" ref="tile">
+    <a :href="tile.url" ref="tile" target="_blank">
       <p>{{ tile.name }}</p>
       {{ highlight ? highlightTile() : '' }}
     </a>
