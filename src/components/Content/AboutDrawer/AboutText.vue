@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>
-      My name is Tom and I am a developer and an automation engineer who
-      occasionally listens to some music
+      My name is Tom and I am a developer and an automation engineer from Israel
+      👋
     </p>
     <p>
       I enjoy working with three.js, typescript, react and aws lambda, just for

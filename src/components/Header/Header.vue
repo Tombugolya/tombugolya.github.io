@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import MainTitle from '@/components/header/MainTitle.vue';
-import Navigation from '@/components/header/Navigation.vue';
+import MainTitle from '@/components/Header/MainTitle.vue';
+import Navigation from '@/components/Header/Navigation.vue';
 import isMobile from 'is-mobile';
 import { defineComponent } from 'vue';
 
