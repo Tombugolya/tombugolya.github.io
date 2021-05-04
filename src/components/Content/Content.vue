@@ -19,7 +19,7 @@ export default defineComponent({
       return this.$store.state.drawerOpen;
     },
     mobileCSS(): Record<string, string> {
-      return isMobile() ? { height: '85vh' } : { height: '90vh' };
+      return isMobile() ? { height: "85vh" } : { height: '90vh' };
     },
   },
 });
