@@ -49,13 +49,13 @@ export default defineComponent({
         {
           id: 4,
           name: 'Match Game',
-          url: `${basePath}/MatchGame/`,
+          url: `${basePath}/match-game/`,
           image: require('@/assets/match.png'),
         },
         {
           id: 5,
           name: 'Tea Cozy',
-          url: `${basePath}/tea_cozy/`,
+          url: `${basePath}/tea-cozy/`,
           image: require('@/assets/teacozy.jpg'),
         },
         {
