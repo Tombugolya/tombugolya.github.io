@@ -1,24 +1,28 @@
-# tombugolya.github.io.vue
+# tombugolya.github.io
+This is my main github pages repo, enjoy!
 
-## Project setup
+## Scripts
+To setup the project and install the dependencies run:
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+To compile and hot-reload for development run:
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+To compile and minify for production run:
 ```
 yarn build
 ```
 
-### Lints and fixes files
+To run prettier and eslint on the files run:
 ```
 yarn lint
 ```
+To run prettier, compile and minifiey for production and deploy to github-page run:
+```
+yarn deploy
+```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
