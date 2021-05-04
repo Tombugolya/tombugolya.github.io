@@ -21,7 +21,7 @@ To run prettier and eslint on the files run:
 ```
 yarn lint
 ```
-To run prettier, compile and minifiey for production and deploy to github-page run:
+To run prettier, compile and minify for production and deploy to github-page run:
 ```
 yarn deploy
 ```
