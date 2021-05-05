@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:wght@300&family=Work+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato&family=Work+Sans:wght@400&display=swap');
 * {
   margin: 0;
 }

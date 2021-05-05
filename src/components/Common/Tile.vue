@@ -22,10 +22,10 @@ export default defineComponent({
       const element = this.$refs.tile as HTMLDivElement;
       const originalColor = element.style.backgroundColor;
       element.style.transition = 'all 300ms linear 0s';
-      element.style.backgroundColor = 'rgba(0,0,0,0)';
+      element.style.backgroundColor = 'rgba(0,0,0,0.8)';
       setTimeout(function () {
         element.style.backgroundColor = originalColor;
-      }, 500);
+      }, 200);
       this.$store.commit('setHighlight', false);
     },
   },
@@ -48,14 +48,12 @@ div {
   background-size: cover;
 }
 p {
-  width: 100%;
   color: white;
   visibility: hidden;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 a {
   font-size: 1.5em;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,8 +61,7 @@ a {
   transition: all 200ms linear 0s;
 }
 a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   transition: all 200ms linear 0s;
 }
 a:hover p {

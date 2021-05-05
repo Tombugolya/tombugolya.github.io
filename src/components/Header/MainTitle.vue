@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>tom bugolya</h1>
+    <h1>Tom Bugolya</h1>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default defineComponent({
 <style scoped>
 h1 {
   font-family: 'Work Sans', sans-serif;
+  font-weight: normal;
   font-size: 1em;
 }
 div {

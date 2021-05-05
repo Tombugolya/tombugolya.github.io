@@ -1,7 +1,7 @@
 <template>
   <div :style="mobileCSS">
-    <p><a href="#" @click="openDrawer">about</a></p>
-    <p><a href="#" @click="highlightProjects">my projects</a></p>
+    <p><a href="#" @click="openDrawer">About</a></p>
+    <p><a href="#" @click="highlightProjects">My projects</a></p>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default defineComponent({
 
 <style scoped>
 p {
+  font-family: 'Work Sans', sans-serif;
   font-size: 0.8em;
 }
 div {

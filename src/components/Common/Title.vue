@@ -44,8 +44,8 @@ div {
   align-items: center;
 }
 h2 {
-  font-family: 'Brush Script MT', sans-serif;
-  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
 }
 
 .fa-times:hover {
