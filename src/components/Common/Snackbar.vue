@@ -1,8 +1,8 @@
 <template>
   <div :style="style.wrap">
-    <div v-for="(msg, i) in messages" :key="i">
-      <div :style="style.bar(msg.color)" @click="pop(i)">
-        {{ msg.msg.message || msg.msg }}
+    <div v-for="(message, i) in messages" :key="i">
+      <div :style="style.bar(message.color)" @click="pop(i)">
+        {{ message.text }}
       </div>
       <br :key="i + '1'" />
     </div>
@@ -10,29 +10,44 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
-const validator = (msg) => {
+type ValidString = string | { message: string | undefined };
+interface PositionAlignment {
+  position: string;
+  textAlign: string;
+}
+interface Message {
+  color: string;
+  text: ValidString;
+}
+interface MessageWithTimer extends Message {
+  timer: number;
+}
+interface Data {
+  messages: MessageWithTimer[];
+}
+const validator = (msg: ValidString) => {
   if (typeof msg !== 'string' && typeof msg.message !== 'string') {
     return 'Parameter msg is invalid. Expected a String, or an Object with property msg[type:String].';
   }
   return msg;
 };
-const getStyle = (baseSize, position) => {
-  const calcByBaseSize = (val) => `calc(${val} * ${baseSize})`;
-  const { pos, textAlign } = position;
+const getStyle = (baseSize: string, positionAlignment: PositionAlignment) => {
+  const calcByBaseSize = (val: number): string => `calc(${val} * ${baseSize})`;
+  const { position, textAlign } = positionAlignment;
   return {
     wrap: {
       position: 'fixed',
       left: 0,
-      [pos]: calcByBaseSize(0.05),
+      [position]: calcByBaseSize(0.05),
       zIndex: 1000,
       width: '100%',
       padding: `0 ${calcByBaseSize(0.2)}`,
       pointerEvents: 'none',
       textAlign,
     },
-    bar: (background) => ({
+    bar: (background: string) => ({
       display: 'inline-block',
       width: 'auto',
       minWidth: baseSize,
@@ -55,6 +70,9 @@ const getStyle = (baseSize, position) => {
 };
 export default defineComponent({
   name: 'SnackBar',
+  data: (): Data => {
+    return { messages: [] };
+  },
   props: {
     colors: {
       default() {
@@ -65,7 +83,12 @@ export default defineComponent({
           warn: '#FF6600',
         };
       },
-      type: Object,
+      type: Object as PropType<{
+        open: string;
+        info: string;
+        error: string;
+        warn: string;
+      }>,
     },
     holdTime: {
       default: 3000,
@@ -85,70 +108,65 @@ export default defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
-      messages: [],
-    };
+  methods: {
+    info(text: string) {
+      const color = this.colors.info;
+      this.open({ color, text }, false);
+      return true;
+    },
+    error(text: string) {
+      const color = this.colors.error;
+      this.open({ color, text }, false);
+      return false;
+    },
+    warn(text: string) {
+      const color = this.colors.warn;
+      this.open({ color, text }, false);
+      return true;
+    },
+    open(message: Message, isOpen = true) {
+      let text: ValidString;
+      let color: string;
+      if (!isOpen) {
+        ({ color } = message);
+        text = validator(message.text);
+      } else {
+        color = this.colors.open;
+        text = validator(message.text);
+      }
+      const messageWithTimer: MessageWithTimer = {
+        color,
+        text,
+        timer: setTimeout(this.pop, this.holdTime),
+      };
+      if (this.multiple) {
+        this.messages.push(messageWithTimer);
+      } else {
+        this.pop(0);
+        this.messages = [messageWithTimer];
+      }
+      return true;
+    },
+    pop(index = 0) {
+      if (this.messages[index]) clearTimeout(this.messages[index].timer);
+      this.messages.splice(index, 1);
+    },
   },
   computed: {
-    $baseSize() {
-      return /\d(rem|px|em)$/.test(this.baseSize) ? this.baseSize : '100px';
-    },
-    $position() {
-      const [position, textAlign] = this.position.toString().split('-');
-      return {
-        pos: ['top', 'bottom'].includes(position) ? position : 'top',
+    style() {
+      const baseSize: string = /\d(rem|px|em)$/.test(this.baseSize)
+        ? this.baseSize
+        : '100px';
+      const array: string[] = this.position.toString().split('-');
+      const position = array[0];
+      const textAlign = array[1];
+      const positionObject: PositionAlignment = {
+        position: ['top', 'bottom'].includes(position) ? position : 'top',
         textAlign: ['left', 'center', 'right'].includes(textAlign)
           ? textAlign
           : 'center',
       };
-    },
-    style() {
-      return getStyle(this.$baseSize, this.$position);
-    },
-  },
-  methods: {
-    info(msg) {
-      const color = this.colors.info;
-      this.open({ color, msg }, false);
-      return true;
-    },
-    error(msg) {
-      const color = this.colors.error;
-      this.open({ color, msg }, false);
-      return false;
-    },
-    warn(msg) {
-      const color = this.colors.warn;
-      this.open({ color, msg }, false);
-      return true;
-    },
-    open(message, isOpen = true) {
-      let msg;
-      let color;
-      if (!isOpen) {
-        ({ color } = message);
-        msg = validator(message.msg);
-      } else {
-        color = this.colors.open;
-        msg = validator(message);
-      }
-      const msgObj = {
-        color,
-        msg,
-        timer: setTimeout(this.pop, this.holdTime),
-      };
-      if (this.multiple) {
-        this.messages.push(msgObj);
-      } else {
-        this.pop(0);
-        this.messages = [msgObj];
-      }
-      return true;
-    },
-    pop(i = 0) {
-      if (this.messages[i]) clearTimeout(this.messages[i].timer);
-      this.messages.splice(i, 1);
+      return getStyle(baseSize, positionObject);
     },
   },
 });
