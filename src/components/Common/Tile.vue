@@ -1,6 +1,6 @@
 <template>
   <div :style="style">
-    <a :href="tile.url" ref="tile" target="_blank">
+    <a ref="elementRef" :href="tile.url" target="_blank">
       <p>{{ tile.name }}</p>
       {{ highlight ? highlightTile() : '' }}
     </a>
@@ -8,8 +8,9 @@
 </template>
 
 <script lang="ts">
+import { useStore } from 'vuex';
+import { defineComponent, ref, computed, PropType } from 'vue';
 import { TileProp } from '@/components/Content/Portfolio/Portfolio.vue';
-import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
   name: 'Tile',
@@ -17,24 +18,29 @@ export default defineComponent({
     tile: Object as PropType<TileProp>,
     highlight: Boolean,
   },
-  methods: {
-    highlightTile(): void {
-      const element = this.$refs.tile as HTMLDivElement;
-      const originalColor = element.style.backgroundColor;
-      element.style.transition = 'all 300ms linear 0s';
-      element.style.backgroundColor = 'rgba(0,0,0,0.8)';
-      setTimeout(function () {
-        element.style.backgroundColor = originalColor;
-      }, 200);
-      this.$store.commit('setHighlight', false);
-    },
-  },
-  computed: {
-    style(): string {
-      if (this.tile && this.tile.image) {
-        return `background-image: url(${this.tile.image});`;
-      } else return '';
-    },
+  setup(props) {
+    const store = useStore();
+    const elementRef = ref<HTMLDivElement | null>(null);
+
+    const highlightTile = () => {
+      const element = elementRef.value as HTMLDivElement;
+      if (element) {
+        const originalColor = element.style.backgroundColor;
+        element.style.transition = 'all 300ms linear 0s';
+        element.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        setTimeout(function () {
+          element.style.backgroundColor = originalColor;
+        }, 200);
+        store.commit('setHighlight', false);
+      }
+    };
+    const style = computed((): string => {
+      if (props.tile && props.tile.image)
+        return `background-image: url(${props.tile.image});`;
+      return '';
+    });
+
+    return { highlightTile, style, elementRef };
   },
 });
 </script>

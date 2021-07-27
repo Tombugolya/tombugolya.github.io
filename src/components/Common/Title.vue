@@ -23,14 +23,11 @@ export default defineComponent({
     },
     onClickCallback: Function,
   },
-  methods: {
-    defaultOnClickCallback(): void {
-      if (this.$parent) this.$parent.$el.style.display = 'none';
-    },
-    invokeOnClickCallback(): void {
-      if (this.onClickCallback) this.onClickCallback();
-      else this.defaultOnClickCallback();
-    },
+  setup(props) {
+    const invokeOnClickCallback = () => {
+      if (props.onClickCallback) props.onClickCallback();
+    };
+    return { invokeOnClickCallback };
   },
 });
 </script>
