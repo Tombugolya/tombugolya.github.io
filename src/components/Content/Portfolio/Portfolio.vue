@@ -54,9 +54,9 @@ export default defineComponent({
         },
         {
           id: 5,
-          name: 'Tea Cozy',
-          url: `${basePath}/tea-cozy/`,
-          image: require('@/assets/teacozy.jpg'),
+          name: 'Weather App',
+          url: `${basePath}/weather-app/`,
+          image: require('@/assets/weather.jpg'),
         },
         {
           id: 6,
